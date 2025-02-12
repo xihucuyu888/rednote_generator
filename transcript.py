@@ -2,7 +2,6 @@ import os
 import yt_dlp
 import subprocess
 import whisper
-import hashlib
 import requests  # 导入 requests 模块
 
 # 初始化 Whisper 模型
@@ -72,7 +71,7 @@ def transcribe_audio(audio_path):
 
 def process_url_file(url_file):
     """
-    处理 url.txt 中的每个 URL，抓取视频、下载并转录
+    处理 url.txt 中的每个 URL，抓取视频、下载
     """
     with open(url_file, 'r') as file:
         urls = file.readlines()
@@ -91,24 +90,24 @@ def process_url_file(url_file):
             
             # 根据视频标题生成唯一的文件名
             video_path = generate_unique_filename(title, ".mp4")
-            audio_path = generate_unique_filename(title, ".wav")
+            #audio_path = generate_unique_filename(title, ".wav")
             
             # 下载视频
             download_video(video_url, video_path)
             
-            # 提取音频
-            extract_audio_from_mp4(video_path, audio_path)
+            # # 提取音频
+            # extract_audio_from_mp4(video_path, audio_path)
             
-            # 转录音频
-            transcript = transcribe_audio(audio_path)
-            print(f"转录结果：\n{transcript}\n")
+            # # 转录音频
+            # transcript = transcribe_audio(audio_path)
+            # print(f"转录结果：\n{transcript}\n")
             
-            # 保存转录结果
-            transcript_filename = f"transcript_{os.path.basename(video_path)}.txt"
-            with open(transcript_filename, 'w') as f:
-                f.write(transcript)
+            # # 保存转录结果
+            # transcript_filename = f"transcript_{os.path.basename(video_path)}.txt"
+            # with open(transcript_filename, 'w') as f:
+            #     f.write(transcript)
             
-            print(f"转录结果已保存为：{transcript_filename}")
+            # print(f"转录结果已保存为：{transcript_filename}")
 
 # 设置 URL 文件路径
 url_file = "url.txt"
