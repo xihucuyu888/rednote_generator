@@ -5,6 +5,6 @@
 
 brew install ffmpeg
 
-pip install requests beautifulsoup4 yt-dlp openai-whisper pydub
+pip install requests yt-dlp openai-whisper
 
 pip install -U yt-dlp
